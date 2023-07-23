@@ -8,8 +8,7 @@ app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), 't
 
 # Definizione della funzione calcola_posizione()
 # Inserire qui il codice per la funzione calcola_posizione()
-def calcola_posizione(punteggi_singolo, punteggi_coppia, punteggi_piccola,
-                      punteggi_grande, punteggi_musici, lista_gruppi=None, parametri=None):
+def calcola_posizione( lista_gruppi=None, parametri=None):
     if lista_gruppi is None:
         lista_gruppi = ["Contrada della Corte", "Artena", "Torri Metelliane", "Pozzo Seravezza", "Piazzarola", "Borgo Veneto",
                         "Borgo Don Bosco", "Tempesta Noale", "Arquatesi", "Terre Sabaude", "Rione Cento", "Borgo San Pietro",
@@ -135,8 +134,7 @@ def calcola_posizione(punteggi_singolo, punteggi_coppia, punteggi_piccola,
 @app.route('/')
 def show_dataframe():
     # Inserire qui il codice per calcolare il DataFrame
-    df = calcola_posizione(punteggi_singolo, punteggi_coppia, punteggi_piccola,
-                           punteggi_grande, punteggi_musici)
+    df = calcola_posizione()
     # Imposta l'indice del DataFrame
     df.set_index('Posizione', inplace=True)
     # Controlla se la prima riga corrisponde alla posizione 1
