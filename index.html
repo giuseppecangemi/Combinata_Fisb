@@ -6,11 +6,113 @@
   <title>Classifica Combinata Tenzone Argentea 2023 - Asti</title>
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="2022.7">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style type="text/css">
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    td.first-cell {
+        background-color: gold;
+    }
+
+    td.second-cell {
+        background-color: silver;
+    }
+
+    td.third-cell {
+        background-color: #cd7f32;
+    }
+
+    td.red-cell {
+        background-color: red;
+    }
+
+    td.gold-singolo {
+        background-color: gold;
+    }
+
+    td.gold-coppia {
+        background-color: gold;
+    }
+
+    td.gold-piccola {
+        background-color: gold;
+    }
+
+    td.gold-grande {
+        background-color: gold;
+    }
+
+    td.gold-musici {
+        background-color: gold;
+    }
+
+    td.silver-singolo {
+        background-color: silver;
+    }
+
+    td.silver-coppia {
+        background-color: silver;
+    }
+
+    td.silver-piccola {
+        background-color: silver;
+    }
+
+    td.silver-grande {
+        background-color: silver;
+    }
+
+    td.silver-musici {
+        background-color: silver;
+    }
+
+    td.bronze-singolo {
+        background-color: #cd7f32;
+    }
+
+    td.bronze-coppia {
+        background-color: #cd7f32;
+    }
+
+    td.bronze-piccola {
+        background-color: #cd7f32;
+    }
+
+    td.bronze-grande {
+        background-color: #cd7f32;
+    }
+
+    td.bronze-musici {
+        background-color: #cd7f32;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    img {
+        width: 50%; /* Imposta la larghezza desiderata dell'immagine */
+        height: auto; /* Imposta l'altezza in base alla larghezza per mantenere le proporzioni originali */
+    }
+
+    /* Stile per allineare le immagini a sinistra e destra */
+    .image-container {
+        display: flex;
+        justify-content: space-between;
+    }
+  </style>
 </head>
 <body>
-<h1><b>Classifica Combinata Tenzone Argentea 2023 - Asti</b></h1>
-<h1><b>A cura di Kangemi_Edu</b></h1>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 30.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>Classifica Combinata Tenzone Argentea 2023 - Asti</b></span></h1>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 14.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>A cura di Kangemi_Edu</b></span></h1>
 
 <!-- Inizia la tabella -->
 <table>
@@ -43,8 +145,13 @@
 </table>
 
 <!-- Aggiungi l'immagine sotto la tabella -->
-<img src="{{ url_for('static', filename='fisb.png') }}" alt="Grafico">
-<img src="{{ url_for('static', filename='cn.png') }}" alt="Grafico">
 
+<div class="image-container">
+  <!-- Prima immagine -->
+  <img src="{{ url_for('static', filename='fisb.png') }}" alt="Grafico">
+
+  <!-- Seconda immagine -->
+  <img src="{{ url_for('static', filename='cn.png') }}" alt="Grafico">
+</div>
 </body>
 </html>
