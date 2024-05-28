@@ -1,149 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title>Classifica Combinata Tenzone Argentea 2023 - Asti</title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2022.7">
-  <style type="text/css">
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+    <meta charset="UTF-8">
+    <title>Group Rankings</title>
+    <script>
+        function validateForm() {
+            const maxSum = 45;
+            const columns = ['singolo', 'coppia', 'piccola', 'grande', 'musici'];
+            const columnSums = {};
 
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: center;
-    }
+            // Initialize column sums
+            columns.forEach(column => columnSums[column] = 0);
 
-    td.first-cell {
-        background-color: gold;
-    }
+            // Calculate sums for each column
+            columns.forEach(column => {
+                for (let i = 0; i < {{ dataframe.shape[0] }}; i++) {
+                    const value = parseInt(document.querySelector(`[name="${column}_${i}"]`).value) || 0;
+                    columnSums[column] += value;
+                }
+            });
 
-    td.second-cell {
-        background-color: silver;
-    }
+            // Check if any column sum exceeds the maximum allowed sum
+            for (let column in columnSums) {
+                if (columnSums[column] > maxSum) {
+                    alert(`La somma delle posizioni della specialità ${column} non può essere maggiore del numero massimo (${maxSum}). Si prega di controllare. CasaNormannaEnterprise Team.`);
+                    return false; // Prevent form submission
+                }
+            }
 
-    td.third-cell {
-        background-color: #cd7f32;
-    }
-
-    td.red-cell {
-        background-color: red;
-    }
-
-    td.gold-singolo {
-        background-color: gold;
-    }
-
-    td.gold-coppia {
-        background-color: gold;
-    }
-
-    td.gold-piccola {
-        background-color: gold;
-    }
-
-    td.gold-grande {
-        background-color: gold;
-    }
-
-    td.gold-musici {
-        background-color: gold;
-    }
-
-    td.silver-singolo {
-        background-color: silver;
-    }
-
-    td.silver-coppia {
-        background-color: silver;
-    }
-
-    td.silver-piccola {
-        background-color: silver;
-    }
-
-    td.silver-grande {
-        background-color: silver;
-    }
-
-    td.silver-musici {
-        background-color: silver;
-    }
-
-    td.bronze-singolo {
-        background-color: #cd7f32;
-    }
-
-    td.bronze-coppia {
-        background-color: #cd7f32;
-    }
-
-    td.bronze-piccola {
-        background-color: #cd7f32;
-    }
-
-    td.bronze-grande {
-        background-color: #cd7f32;
-    }
-
-    td.bronze-musici {
-        background-color: #cd7f32;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    img {
-        width: 50%; /* Imposta la larghezza desiderata dell'immagine */
-        height: auto; /* Imposta l'altezza in base alla larghezza per mantenere le proporzioni originali */
-    }
-
-    /* Stile per allineare le immagini a sinistra e destra */
-    .image-container {
-        display: flex;
-        justify-content: space-between;
-    }
-  </style>
+            return true; // Allow form submission
+        }
+    </script>
 </head>
 <body>
-<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 30.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>Classifica Combinata Tenzone Argentea 2023 - Asti</b></span></h1>
-<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 14.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>A cura di Kangemi_Edu</b></span></h1>
-
-<!-- Inizia la tabella -->
-<table>
-  <thead>
-    <tr>
-      <th>Posizione</th>
-      <th>Gruppo</th>
-      <th>Singolo</th>
-      <th>Coppia</th>
-      <th>Piccola</th>
-      <th>Grande</th>
-      <th>Musici</th>
-      <th>Combinata</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for index, row in dataframe.iterrows() %}
-    <tr>
-      <td {% if index == 1 %}class="first-cell"{% elif index == 2 %}class="second-cell"{% elif index == 3 %}class="third-cell"{% elif index in [16, 17, 18, 19, 20] %}class="red-cell"{% endif %}>{{ index }}</td>
-      <td>{{ row["Gruppo"] }}</td>
-      <td {% if row["Singolo"] == 1 %}class="gold-singolo"{% elif row["Singolo"] == 2 %}class="silver-singolo"{% elif row["Singolo"] == 3 %}class="bronze-singolo"{% endif %}>{{ row["Singolo"] }}</td>
-      <td {% if row["Coppia"] == 1 %}class="gold-coppia"{% elif row["Coppia"] == 2 %}class="silver-coppia"{% elif row["Coppia"] == 3 %}class="bronze-coppia"{% endif %}>{{ row["Coppia"] }}</td>
-      <td {% if row["Piccola"] == 1 %}class="gold-piccola"{% elif row["Piccola"] == 2 %}class="silver-piccola"{% elif row["Piccola"] == 3 %}class="bronze-piccola"{% endif %}>{{ row["Piccola"] }}</td>
-      <td {% if row["Grande"] == 1 %}class="gold-grande"{% elif row["Grande"] == 2 %}class="silver-grande"{% elif row["Grande"] == 3 %}class="bronze-grande"{% endif %}>{{ row["Grande"] }}</td>
-      <td {% if row["Musici"] == 1 %}class="gold-musici"{% elif row["Musici"] == 2 %}class="silver-musici"{% elif row["Musici"] == 3 %}class="bronze-musici"{% endif %}>{{ row["Musici"] }}</td>
-      <td>{{ row["Combinata"] }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-
+    <h1>Classifica Gruppi - Tenzone Bronzea Sulmona</h1>
+    <form method="POST" action="/update" onsubmit="return validateForm();">
+        <table border="1">
+            <tr>
+                <th>Posizione</th>
+                <th>Gruppo</th>
+                <th>Singolo</th>
+                <th>Coppia</th>
+                <th>Piccola</th>
+                <th>Grande</th>
+                <th>Musici</th>
+                <th>Combinata</th>
+            </tr>
+            {% for idx, row in dataframe.iterrows() %}
+            <tr>
+                <td>{{ idx }}</td>
+                <td>{{ row.Gruppo }}</td>
+                <td><input type="number" name="singolo_{{ loop.index0 }}" value="{{ row.Singolo }}"></td>
+                <td><input type="number" name="coppia_{{ loop.index0 }}" value="{{ row.Coppia }}"></td>
+                <td><input type="number" name="piccola_{{ loop.index0 }}" value="{{ row.Piccola }}"></td>
+                <td><input type="number" name="grande_{{ loop.index0 }}" value="{{ row.Grande }}"></td>
+                <td><input type="number" name="musici_{{ loop.index0 }}" value="{{ row.Musici }}"></td>
+                <td>{{ row.Combinata }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Update Scores</button>
+    </form>
 </body>
 </html>
